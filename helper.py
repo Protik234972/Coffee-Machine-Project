@@ -37,3 +37,9 @@ def make_report(resources):
         print(f"Water: {resources['water']}ml")
         print(f"Milk: {resources['milk']}ml")
         print(f"Coffee: {resources['coffee']}g")
+
+def refill_ingredients(resources):
+     resources['water'] += int(input("Enter the amount of Water : "))
+     resources['milk'] += int(input("Enter the amount of Milk : "))
+     resources['coffee'] += int(input("Enter the amount of Coffee : "))
+     make_report(resources)
