@@ -48,7 +48,7 @@ while is_on:
         is_on = False
     elif choice == "admin":
         count = 5
-        while count !=0:
+        while count != 0:
             password = input("Enter Admin Password : \n")
             if password == "Uiewwb605":
                 print("  Menu  ")
@@ -61,21 +61,26 @@ while is_on:
                     h.make_report(resources)
                     print(f"Money: ${money}")
                     break
-                elif ans =="2":
+                elif ans == "2":
                     h.refill_ingredients(resources)
                     h.make_report(resources)
                     break
             else:
-                count -=1
+                count -= 1
                 print(f"Oops! Wrong Password. Try remain {count} times")
         
     else:
-        select_choice = MENU[choice]
-        if h.is_resources_sufficient(select_choice['ingredients'], resources):
-            quarters =int(input("Number of quarters ($0.25) insert : "))
-            dimes    =int(input("Number of dimes  ($0.10) insert   : "))
-            nickles  =int(input("Number of nickles ($0.05) insert  : "))
-            pennies  =int(input("Number of pennies ($0.01) insert  : "))
-            print()
-            total_amount = pennies * 0.01 + nickles * 0.05 + dimes *0.10 + quarters *0.25
-            h.check_transaction(total_amount,select_choice,resources,money,choice.title())
+        try:
+            select_choice = MENU[choice]
+            if h.is_resources_sufficient(select_choice['ingredients'], resources):
+                quarters = int(input("Number of quarters ($0.25) insert : "))
+                dimes = int(input("Number of dimes  ($0.10) insert   : "))
+                nickles = int(input("Number of nickles ($0.05) insert  : "))
+                pennies = int(input("Number of pennies ($0.01) insert  : "))
+                print()
+                total_amount = pennies * 0.01 + nickles * 0.05 + dimes * 0.10 + quarters * 0.25
+                h.check_transaction(total_amount, select_choice, resources, money, choice.title())
+        except ValueError:
+            print("Please enter a valid number.")
+        except KeyError:
+            print("Invalid choice. Please select from espresso, latte, or cappuccino.")
